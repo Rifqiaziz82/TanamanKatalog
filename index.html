@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERDANTIA - Curated Botanical Luxury</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #FEFEFE 0%, #F8FAF8 100%);
+            color: #2C2C2C;
+            overflow-x: hidden;
+        }
+
+        .poster-container {
+            width: 100%;
+            min-height: 2200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* White Marble Background Pattern */
+        .marble-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://sfile.chatglm.cn/images-ppt/b892691d6cfd.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Botanical Line Art Pattern */
+        .botanical-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://sfile.chatglm.cn/images-ppt/c0b80261fb46.jpg');
+            background-size: 800px;
+            background-repeat: repeat;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Floating Leaf Decorations */
+        .floating-leaf {
+            position: absolute;
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0.15;
+        }
+
+        .leaf-1 {
+            top: 150px;
+            left: 100px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #0E4D3E, #B8C9B5);
+            border-radius: 0 100px 0 100px;
+            transform: rotate(45deg);
+        }
+
+        .leaf-2 {
+            top: 600px;
+            right: 120px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #B8C9B5, #0E4D3E);
+            border-radius: 100px 0 100px 0;
+            transform: rotate(-45deg);
+        }
+
+        .leaf-3 {
+            bottom: 800px;
+            left: 200px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0E4D3E, #B8C9B5);
+            border-radius: 0 100px 0 100px;
+            transform: rotate(90deg);
+        }
+
+        /* Sunlight Ray Effect */
+        .sunlight-rays {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 800px;
+            background: linear-gradient(135deg, 
+                rgba(184, 201, 181, 0.08) 0%, 
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%);
+            pointer-events: none;
+            z-index: 4;
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Navigation */
+        .nav {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(14, 77, 62, 0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: #0E4D3E;
+            letter-spacing: 4px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-item {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #2C2C2C;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: #0E4D3E;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 60px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            min-height: 700px;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .hero-tagline {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #0E4D3E;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 96px;
+            font-weight: 300;
+            color: #0E4D3E;
+            letter-spacing: 6px;
+            margin-bottom: 32px;
+            line-height: 1.1;
+        }
+
+        .hero-description {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #4A4A4A;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: #0E4D3E;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(14, 77, 62, 0.3);
+            border: none;
+        }
+
+        .cta-button:hover {
+            background: #0A3A2F;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(14, 77, 62, 0.4);
+        }
+
+        .cta-button-outline {
+            background: transparent;
+            border: 2px solid #0E4D3E;
+            color: #0E4D3E;
+            box-shadow: none;
+        }
+
+        .cta-button-outline:hover {
+            background: #0E4D3E;
+            color: #FFFFFF;
+        }
+
+        /* Hero Image */
+        .hero-image-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 550px;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 40px 80px rgba(14, 77, 62, 0.2);
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-image-accent {
+            position: absolute;
+            width: 580px;
+            height: 580px;
+            border: 2px solid #B8C9B5;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 4;
+            opacity: 0.5;
+        }
+
+        /* Featured Collections */
+        .collections-section {
+            padding: 100px 60px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 58px;
+            font-weight: 400;
+            color: #0E4D3E;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #B8C9B5;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .collection-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 248, 0.9));
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(14, 77, 62, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(14, 77, 62, 0.15);
+        }
+
+        .collection-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .collection-card:hover .collection-image {
+            transform: scale(1.05);
+        }
+
+        .collection-info {
+            padding: 32px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.85));
+        }
+
+        .collection-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #0E4D3E;
+            margin-bottom: 12px;
+        }
+
+        .collection-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #6B6B6B;
+            margin-bottom: 20px;
+        }
+
+        .collection-count {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #B8C9B5;
+        }
+
+        /* Plant Showcase */
+        .showcase-section {
+            padding: 100px 60px;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .plant-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(14, 77, 62, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .plant-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #0E4D3E, #B8C9B5);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .plant-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .plant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(14, 77, 62, 0.12);
+        }
+
+        .plant-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .plant-info {
+            padding: 24px;
+        }
+
+        .plant-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #0E4D3E;
+            margin-bottom: 8px;
+        }
+
+        .plant-species {
+            font-size: 12px;
+            font-style: italic;
+            color: #8B8B8B;
+            margin-bottom: 12px;
+        }
+
+        .plant-price {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0E4D3E;
+            margin-bottom: 12px;
+        }
+
+        .plant-care {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .care-badge {
+            padding: 6px 12px;
+            background: rgba(184, 201, 181, 0.2);
+            border-radius: 12px;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #0E4D3E;
+            font-weight: 500;
+        }
+
+        /* Why Choose Us */
+        .why-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, rgba(14, 77, 62, 0.03), rgba(184, 201, 181, 0.05));
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            border: 1px solid rgba(14, 77, 62, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(14, 77, 62, 0.1);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .why-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0E4D3E, #B8C9B5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .why-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #0E4D3E;
+            margin-bottom: 16px;
+        }
+
+        .why-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #6B6B6B;
+        }
+
+        /* Care Guide */
+        .care-guide-section {
+            padding: 100px 60px;
+        }
+
+        .care-guide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .care-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px 32px;
+            border-left: 4px solid #0E4D3E;
+            transition: all 0.3s ease;
+        }
+
+        .care-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 15px 35px rgba(14, 77, 62, 0.1);
+        }
+
+        .care-icon {
+            font-size: 40px;
+            color: #B8C9B5;
+            margin-bottom: 20px;
+        }
+
+        .care-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: #0E4D3E;
+            margin-bottom: 16px;
+        }
+
+        .care-description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #6B6B6B;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 100px 60px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 248, 0.9));
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 32px;
+            border: 1px solid rgba(14, 77, 62, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(14, 77, 62, 0.12);
+        }
+
+        .testimonial-stars {
+            color: #B8C9B5;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #4A4A4A;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0E4D3E;
+            margin-bottom: 4px;
+        }
+
+        .testimonial-location {
+            font-size: 12px;
+            color: #8B8B8B;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, #0E4D3E, #0A3A2F);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://sfile.chatglm.cn/images-ppt/6972857e3a31.jpg');
+            background-size: 600px;
+            background-repeat: repeat;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .newsletter-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .newsletter-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 52px;
+            font-weight: 400;
+            color: #FFFFFF;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-description {
+            font-size: 16px;
+            color: #B8C9B5;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 18px 28px;
+            font-size: 14px;
+            border: 2px solid rgba(184, 201, 181, 0.3);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-input::placeholder {
+            color: #B8C9B5;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #B8C9B5;
+        }
+
+        .newsletter-button {
+            padding: 18px 40px;
+            background: #B8C9B5;
+            color: #0E4D3E;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 80px 60px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-top: 1px solid rgba(14, 77, 62, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: #0E4D3E;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #6B6B6B;
+            margin-bottom: 24px;
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #0E4D3E;
+            margin-bottom: 24px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #6B6B6B;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            color: #0E4D3E;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(14, 77, 62, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0E4D3E;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #0E4D3E;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(14, 77, 62, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom-text {
+            font-size: 13px;
+            color: #8B8B8B;
+        }
+
+        /* Material Icons */
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 72px;
+            }
+
+            .collections-grid,
+            .showcase-grid,
+            .why-grid,
+            .care-guide-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 20px 30px;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero {
+                padding: 60px 30px;
+            }
+
+            .hero-title {
+                font-size: 56px;
+            }
+
+            .collections-grid,
+            .showcase-grid,
+            .why-grid,
+            .care-guide-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster-container">
+        <!-- Background Layers -->
+        <div class="marble-bg"></div>
+        <div class="botanical-pattern"></div>
+        <div class="sunlight-rays"></div>
+
+        <!-- Floating Leaf Decorations -->
+        <div class="floating-leaf leaf-1"></div>
+        <div class="floating-leaf leaf-2"></div>
+        <div class="floating-leaf leaf-3"></div>
+
+        <div class="content-wrapper">
+            <!-- Navigation -->
+            <nav class="nav">
+                <div class="nav-logo">VERDANTIA</div>
+                <div class="nav-menu">
+                    <span class="nav-item">Collections</span>
+                    <span class="nav-item">Shop</span>
+                    <span class="nav-item">Care Guide</span>
+                    <span class="nav-item">About</span>
+                    <span class="nav-item">Contact</span>
+                </div>
+            </nav>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-tagline">Curated Botanical Luxury</div>
+                    <h1 class="hero-title">VERDANTIA</h1>
+                    <p class="hero-description">
+                        Discover a world of curated botanical treasures. From rare variegated specimens to timeless classics, each plant is hand-selected and nurtured to bring life and elegance to your urban sanctuary.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="cta-button">Explore Collection</button>
+                        <button class="cta-button cta-button-outline">Visit Our Nursery</button>
+                    </div>
+                </div>
+
+                <div class="hero-image-container">
+                    <div class="hero-image-accent"></div>
+                    <img src="https://sfile.chatglm.cn/images-ppt/cae2a57ab058.jpg" alt="Monstera Variegata" class="hero-image">
+                </div>
+            </section>
+
+            <!-- Featured Collections -->
+            <section class="collections-section">
+                <div class="section-header">
+                    <div class="section-subtitle">Featured Collections</div>
+                    <h2 class="section-title">Botanical Treasures</h2>
+                </div>
+
+                <div class="collections-grid">
+                    <div class="collection-card">
+                        <img src="https://sfile.chatglm.cn/images-ppt/51d069828a5a.jpg" alt="Rare Variegated Collection" class="collection-image">
+                        <div class="collection-info">
+                            <h3 class="collection-name">Rare Variegated</h3>
+                            <p class="collection-description">Exclusive variegated specimens with unique patterns and colors</p>
+                            <div class="collection-count">24 Species Available</div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card">
+                        <img src="https://sfile.chatglm.cn/images-ppt/9d5d9bfefbf3.jpg" alt="Urban Jungle Essentials" class="collection-image">
+                        <div class="collection-info">
+                            <h3 class="collection-name">Urban Essentials</h3>
+                            <p class="collection-description">Perfect plants for modern indoor living spaces</p>
+                            <div class="collection-count">36 Species Available</div>
+                        </div>
+                    </div>
+
+                    <div class="collection-card">
+                        <img src="https://sfile.chatglm.cn/images-ppt/e664f53a9baa.jpg" alt="Artisan Pots" class="collection-image">
+                        <div class="collection-info">
+                            <h3 class="collection-name">Artisan Pots</h3>
+                            <p class="collection-description">Handcrafted clay pots designed for botanical elegance</p>
+                            <div class="collection-count">18 Styles Available</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plant Showcase -->
+            <section class="showcase-section">
+                <div class="section-header">
+                    <div class="section-subtitle">New Arrivals</div>
+                    <h2 class="section-title">Premium Selection</h2>
+                </div>
+
+                <div class="showcase-grid">
+                    <div class="plant-card">
+                        <img src="https://sfile.chatglm.cn/images-ppt/646f824edce8.jpg" alt="Monstera Albo" class="plant-image">
+                        <div class="plant-info">
+                            <h3 class="plant-name">Monstera Albo</h3>
+                            <div class="plant-species">Monstera deliciosa var. albo</div>
+                            <div class="plant-price">$450</div>
+                            <div class="plant-care">
+                                <span class="care-badge">Indirect Light</span>
+                                <span class="care-badge">Weekly Water</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plant-card">
+                        <img src="https://sfile.chatglm.cn/images-ppt/000cc694bdd9.jpg" alt="Philodendron Pink Princess" class="plant-image">
+                        <div class="plant-info">
+                            <h3 class="plant-name">Pink Princess</h3>
+                            <div class="plant-species">Philodendron erubescens</div>
+                            <div class="plant-price">$280</div>
+                            <div class="plant-care">
+                                <span class="care-badge">Bright Light</span>
+                                <span class="care-badge">Moderate Water</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plant-card">
+                        <img src="https://sfile.chatglm.cn/images-ppt/d5140b3ae5d7.webp" alt="Monstera Thai Constellation" class="plant-image">
+                        <div class="plant-info">
+                            <h3 class="plant-name">Thai Constellation</h3>
+                            <div class="plant-species">Monstera deliciosa</div>
+                            <div class="plant-price">$380</div>
+                            <div class="plant-care">
+                                <span class="care-badge">Indirect Light</span>
+                                <span class="care-badge">Weekly Water</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="plant-card">
+                        <img src="https://sfile.chatglm.cn/images-ppt/82f9ceb948c0.jpg" alt="Alocasia Polly" class="plant-image">
+                        <div class="plant-info">
+                            <h3 class="plant-name">African Mask</h3>
+                            <div class="plant-species">Alocasia amazonica</div>
+                            <div class="plant-price">$120</div>
+                            <div class="plant-care">
+                                <span class="care-badge">Bright Shade</span>
+                                <span class="care-badge">High Humidity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us -->
+            <section class="why-section">
+                <div class="section-header">
+                    <div class="section-subtitle">Why Verdantia</div>
+                    <h2 class="section-title">The Verdantia Difference</h2>
+                </div>
+
+                <div class="why-grid">
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="material-icons">eco</i>
+                        </div>
+                        <h3 class="why-title">Expert Care</h3>
+                        <p class="why-description">Personalized care guidance from our team of botanical specialists</p>
+                    </div>
+
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="material-icons">verified</i>
+                        </div>
+                        <h3 class="why-title">Premium Quality</h3>
+                        <p class="why-description">Hand-selected specimens with rigorous health standards</p>
+                    </div>
+
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="material-icons">spa</i>
+                        </div>
+                        <h3 class="why-title">Sustainable</h3>
+                        <p class="why-description">Eco-conscious practices from propagation to delivery</p>
+                    </div>
+
+                    <div class="why-card">
+                        <div class="why-icon">
+                            <i class="material-icons">design_services</i>
+                        </div>
+                        <h3 class="why-title">Styling Service</h3>
+                        <p class="why-description">Complimentary interior styling consultations available</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Care Guide -->
+            <section class="care-guide-section">
+                <div class="section-header">
+                    <div class="section-subtitle">Plant Care</div>
+                    <h2 class="section-title">Expert Care Guide</h2>
+                </div>
+
+                <div class="care-guide-grid">
+                    <div class="care-card">
+                        <i class="material-icons care-icon">wb_sunny</i>
+                        <h3 class="care-title">Light Requirements</h3>
+                        <p class="care-description">Understanding your plant's light needs is essential. Most tropical plants thrive in bright, indirect light. Avoid direct sunlight which can burn leaves.</p>
+                    </div>
+
+                    <div class="care-card">
+                        <i class="material-icons care-icon">water_drop</i>
+                        <h3 class="care-title">Watering Schedule</h3>
+                        <p class="care-description">Water when the top 2 inches of soil feels dry. Overwatering is the most common cause of plant death. Ensure proper drainage in all pots.</p>
+                    </div>
+
+                    <div class="care-card">
+                        <i class="material-icons care-icon">air</i>
+                        <h3 class="care-title">Humidity & Temperature</h3>
+                        <p class="care-description">Tropical plants love humidity between 60-80%. Use pebble trays or humidifiers for optimal growth. Maintain temperatures above 60°F (15°C).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonials-section">
+                <div class="section-header">
+                    <div class="section-subtitle">Testimonials</div>
+                    <h2 class="section-title">Happy Plant Parents</h2>
+                </div>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"The quality of plants from Verdantia is unmatched. My Monstera arrived in perfect condition and has thrived ever since."</p>
+                        <div class="testimonial-author">Sarah Mitchell</div>
+                        <div class="testimonial-location">New York, NY</div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Expert advice and beautiful specimens. The care guide helped me transform my apartment into an urban jungle."</p>
+                        <div class="testimonial-author">James Cooper</div>
+                        <div class="testimonial-location">Los Angeles, CA</div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <p class="testimonial-text">"Finally found a trusted source for rare variegated plants. The packaging was impeccable, and the plants are stunning!"</p>
+                        <div class="testimonial-author">Emily Chen</div>
+                        <div class="testimonial-location">San Francisco, CA</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section class="newsletter-section">
+                <div class="newsletter-pattern"></div>
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Join Our Botanical Community</h2>
+                    <p class="newsletter-description">Subscribe for exclusive offers, care tips, and early access to rare plant drops</p>
+                    <div class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Enter your email address">
+                        <button class="newsletter-button">Subscribe</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <h3>VERDANTIA</h3>
+                        <p>Curating botanical luxury for the modern urban dweller. Each plant tells a story of nature's artistry.</p>
+                        <div class="social-links">
+                            <div class="social-link">
+                                <i class="material-icons">camera_alt</i>
+                            </div>
+                            <div class="social-link">
+                                <i class="material-icons">facebook</i>
+                            </div>
+                            <div class="social-link">
+                                <i class="material-icons">play_circle</i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li>Shop All Plants</li>
+                            <li>New Arrivals</li>
+                            <li>Rare Collection</li>
+                            <li>Gift Cards</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">Support</h4>
+                        <ul class="footer-links">
+                            <li>Care Guide</li>
+                            <li>FAQs</li>
+                            <li>Shipping Info</li>
+                            <li>Returns Policy</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-title">Contact</h4>
+                        <ul class="footer-links">
+                            <li>hello@verdantia.com</li>
+                            <li>+1 (555) 123-4567</li>
+                            <li>Mon-Sat: 9AM-7PM</li>
+                            <li>Visit Our Nursery</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-bottom-text">© 2024 Verdantia. All rights reserved.</div>
+                    <div class="footer-bottom-text">Privacy Policy | Terms of Service</div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Parallax effect for floating leaves
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const leaves = document.querySelectorAll('.floating-leaf');
+            
+            leaves.forEach((leaf, index) => {
+                const speed = 0.2 + (index * 0.1);
+                leaf.style.transform = `translateY(${scrolled * speed}px) rotate(${45 + (index * 45)}deg)`;
+            });
+        });
+
+        // Hover effects for cards
+        document.querySelectorAll('.collection-card, .plant-card, .why-card, .care-card, .testimonial-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = this.classList.contains('care-card') ? 'translateX(8px)' : 'translateY(-8px)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) translateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>
